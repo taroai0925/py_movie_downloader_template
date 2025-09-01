@@ -1,3 +1,11 @@
+# Google Cloud Shell をリセットするコマンド
+**全てのデータが消えるので、バックアップを取得した上で実行してください。**
+```bash
+rm -rf $HOME/* $HOME/.[!.]*
+```
+
+
+
 # Cloud Shellエディタで.envファイルが表示されない時の解決手順
 
 ### ステップ1：基本設定の確認 (Exclude Git Ignore)

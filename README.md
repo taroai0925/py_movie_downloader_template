@@ -121,7 +121,7 @@ gmailアドレスを連絡してください。
     ```
     2. 初めての人は、ログインを求められますので、いつも使うのと同じgoogleアカウントでログインしてください。
     3. 以下の命令をgeminiに貼り付け、エンターキーを押します。
-    　　@m01_google_drive_manager.py の'SHARED_DRIVE_FOLDER_ID'の値を'1h9NQgOxpxk'に変更してください。
+    　　@m01_google_drive_manager.py の１行をSHARED_DRIVE_FOLDER_ID='？？？？'に変更してください。
     4. geminiから、修正しても良いですかと英語で聞かれますので、エンターキーを押してください。
 
 ---

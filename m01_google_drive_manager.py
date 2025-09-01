@@ -17,7 +17,7 @@ DOWNLOADS_DIR = 'downloads'
 
 # ▼▼▼ ここが未完成なポイント！ ▼▼▼
 # TODO: Geminiに指示して、ここにGoogle DriveのフォルダIDを設定してもらう
-SHARED_DRIVE_FOLDER_ID = '1KarJiVGgwYC8MRoiX14tEBMQifNSxDAe'
+SHARED_DRIVE_FOLDER_ID='1KarJiVGgwYC8MRoiX14tEBMQifNSxDAe'
 # ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲
 
 def _sanitize_filename(filename):
@@ -30,8 +30,8 @@ def authenticate():
     if os.path.exists(TOKEN_FILE):
         creds = Credentials.from_authorized_user_file(TOKEN_FILE, SCOPES)
     if not creds or not creds.valid:
-        print("エラー: 認証情報(token.json)が無効です。", file=sys.stderr)
-        print("'python start.py'を先に実行して、認証を完了させてください。", file=sys.stderr)
+        print("\nエラー: 認証情報(token.json)が無効です。", file=sys.stderr)
+        print("`python a00_start.py`を先に実行して、認証を完了させてください。\n", file=sys.stderr)
         return None
     if creds.expired and creds.refresh_token:
         creds.refresh(Request())
@@ -43,7 +43,7 @@ def list_new_videos(service):
         errmsg="""
 エラー: 検索対象のフォルダIDが設定されていません！
 以下の？？？？をあなたのgoogleドライブのIDに変更して、コピーします。
-@m01_google_drive_manager.py の'SHARED_DRIVE_FOLDER_ID'を'？？？？'に設定してください。
+@m01_google_drive_manager.py の1行を SHARED_DRIVE_FOLDER_ID='？？？？'に変更してください。
 ---------------------------------------------------------------------------------------
 上記の命令をgeminiに貼り付け、エンターキーを押してください。
 geminiから、修正しても良いですかと英語で聞かれますので、エンターキーを押してください。"""
