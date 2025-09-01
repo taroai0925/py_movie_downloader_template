@@ -3,7 +3,7 @@
 このガイドは、プログラミング経験が全くない方でも、自分専用のアプリを完成させられるように作られています。難しいことは全部「Cloud Shell」という魔法の箱がやってくれるので、安心してついてきてくださいね！
 
 #### なぜ「Google Cloud Shell」を使うの？
-一言でいうと、**「あなたのパソコンを汚さずに、無料でプロの開発環境が使えるから」**です。
+一言でいうと、 **「あなたのパソコンを汚さずに、無料でプロの開発環境が使えるから」** です。
 料理に例えるなら、最新の調理器具がすべて揃った、ピカピカのレンタルキッチンを無料で使えるようなものです。後片付けも不要で、とっても便利！
 
 ## 目次:
@@ -53,11 +53,12 @@ gmailアドレスを連絡してください。
     2. 以下のリンクから`py_movie_donwloader_template.zip`というファイルを、あなたのパソコンにダウンロードします。
     [py_movie_donwloader_template.zip ダウンロード](https://github.com/sinzy0925/py_movie_downloader_template/raw/refs/heads/main/img/py_movie_downloader_template.zip)
 
-    3.  次に、Cloud Shellを開き、画面右上の**さらに表示メニュー（︙）** から「**アップロード**」を選択して、今ダウンロードした`py_movie_donwloader_template.zip`をアップロードします。
+    3.  次に、Cloud Shellを開き、画面右上の**さらに表示メニュー（︙）** から「**アップロード**」を選択して、今ダウンロードした`py_movie_downloader_template.zip`をアップロードします。
 
     4.  最後に、以下のコマンドを実行して、zipファイルを解凍（展開）し、準備を完了させます。
+        画面したのターミナルをクリックして、以下コピペして、エンターキーを押してください。
         ```bash
-        unzip py_movie_donwloader_template.zip && cd py_movie_donwloader_template
+        unzip py_movie_downloader_template.zip && cd py_movie_downloader_template
         ```
 
 > **ポイント：**
@@ -82,6 +83,10 @@ gmailアドレスを連絡してください。
     3.  画面に長いURLが表示されるので、それをコピーしてブラウザで開きます。
     4.  見慣れたGoogleのログイン画面が表示されるので、ログインして「**許可**」をクリックします。
     5.  ブラウザに「認証コード」が表示されたら、それをコピーして、Cloud Shellの画面に貼り付けてEnterキーを押します。
+    6.  ここで作成される、**`token.json`**は、１時間で時間切れになりますので、時間切れになった場合は、再度以下を実行してください。
+    ```bash
+    python a00_start.py
+    ```
 
 *   **何が起きるの？**
     この「握手」が成功すると、その証として **`token.json`** という特別な **「合鍵」** が自動的に作られます。
@@ -123,12 +128,18 @@ gmailアドレスを連絡してください。
     3. 以下の命令をgeminiに貼り付け、エンターキーを押します。
     　　@m01_google_drive_manager.py の１行をSHARED_DRIVE_FOLDER_ID='？？？？'に変更してください。
     4. geminiから、修正しても良いですかと英語で聞かれますので、エンターキーを押してください。
+>   ヒント:
+>   geminiコマンドで、gemini-cliが起動できないばあがあります。何度か試してみてください。(多分、gemini-cliの自動アップデートで時間をとられていると思われますので、ほとんどの場合、しばらく待てば動きます。)　それでもだめなら、以下のコマンドでgmini-cliを再度インストールします。
+>   ```bash
+npm install -g @google/gemini-cli
+```
+
 
 ---
 
 ### ステップ8：gemini-cliを終了して、アプリを実行します。(約3分)
 *   **作業内容:**
-    1. gemini-cliを終了しますので、「Ctrl + c」を数回入力してください。
+    1. gemini-cliを終了しますので、「Ctrl + c」を2回以上入力してください。
     2. 以下のコマンドを入力して、アプリを実行します。
     ```bash
     python m01_google_drive_manager.py
