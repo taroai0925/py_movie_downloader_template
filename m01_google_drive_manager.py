@@ -55,7 +55,8 @@ geminiから、修正しても良いですかと英語で聞かれますので�
         if os.path.exists(log_file):
             with open(log_file, 'r', encoding='utf-8') as f:
                 for line in f:
-                    processed_ids.add(line.strip().split(',')[1])
+                    if line != "":
+                        processed_ids.add(line.strip().split(',')[1])
     
     print(f"'{SHARED_DRIVE_FOLDER_ID}'をスキャンしています...")
     new_videos = []
@@ -103,7 +104,7 @@ def log_failure(file_id, file_name, error, log_file_path):
         with open(log_file_path, 'w', encoding='utf-8') as f:
             f.write(f"{timestamp},{file_id},{_sanitize_filename(file_name)},{error_oneline}\n")
         print(f"失敗ログを一次ファイルに記録しました: {log_file_path}", file=sys.stderr)
-        log_entry(SUCCESS_LOG_FILE, file_id, file_name, "FAILURE")
+        log_entry(FAILURE_LOG_FILE, file_id, file_name, "FAILURE")
     except IOError as e:
         print(f"失敗ログの書き込み中にエラー: {e}", file=sys.stderr)
 
