@@ -94,10 +94,9 @@ jobs:
         with:
           name: results-and-logs
           path: |
-            downloads/
-            m4a/
-            split_m4a/
-            temp_logs/
+            split_m4a/*.txt
+            split_m4a/*.md
+            split_m4a/*.txt
             processed_success.log
             processed_failure.log
       
