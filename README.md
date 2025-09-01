@@ -219,7 +219,9 @@ npm install -g @google/gemini-cli
 
 ### ステップ12： [オプション作業]Github actionsで、全てのアプリを自動実行して、動画ファイルから文字起こししてマガジンを作る作業を実行します。
 *   **作業内容:**
-    github のアカウント作成から、github actions 実行までを説明すると１時間以上かかりますので、割愛します。github のアカウントがあり、githubに、pushしたところから説明します。
+    github のアカウント作成から、github actions 実行までを説明すると
+    １時間以上かかりますので、割愛します。
+    github のアカウントがあり、githubに、pushしたところから説明します。
     
     1. pushしたリポジトリを開く
     ```bash
@@ -230,6 +232,6 @@ npm install -g @google/gemini-cli
     4. 画面右の中央の、`Run Workflow`をクリックする
     5. すぐ下に表示される緑色の`Run Workflow`をクリックする
     6. github actions で実行されます。
-    7. 数分後に　上記2のActions を再度クリックしたら、
+    7. 数分後に　上記2のActions を再度クリックしたら、作業が終わっていて、結果のデータをダウンロードできます。
 
 
