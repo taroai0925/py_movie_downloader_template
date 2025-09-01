@@ -1,0 +1,10 @@
+__pycache__/
+.venv/
+downloads/
+m4a/
+movie*/
+split_m4a/
+.env
+service-acount-getstockdata05-gdrive-transcript-bot.json
+credentials.json
+token.json
