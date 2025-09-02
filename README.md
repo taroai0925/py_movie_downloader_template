@@ -232,6 +232,7 @@ npm install -g @google/gemini-cli
     4. 画面右の中央の、`Run Workflow`をクリックする
     5. すぐ下に表示される緑色の`Run Workflow`をクリックする
     6. github actions で実行されます。
-    7. 数分後に　上記2のActions を再度クリックしたら、作業が終わっていて、結果のデータをダウンロードできます。
+    7. 数分後に　上記2のActions を再度クリックしたら、作業が終わっていて、
+    結果のデータをダウンロードできます。
 
 
