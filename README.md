@@ -51,7 +51,7 @@ gmailアドレスを連絡してください。
     1. まずは、私があらかじめ用意した **「アプリの素」** が詰まったzipファイルを、あなたのCloud Shellにアップロードしましょう。
     このzipファイルには、アプリの設計図や、Googleに挨拶するための **「身分証明書 (`credentials.json`)」** など、必要なものが全て入っています。
     2. 以下のリンクから`py_movie_donwloader_template.zip`というファイルを、あなたのパソコンにダウンロードします。
-    [py_movie_donwloader_template.zip ダウンロード](https://github.com/sinzy0925/py_movie_downloader_template/raw/refs/heads/main/img/py_movie_downloader_template.zip)
+    [py_movie_donwloader_template.zip ダウンロード](https://github.com/taroai0925/py_movie_downloader_template/raw/refs/heads/main/img/py_movie_downloader_template.zip)
 
     3.  次に、Cloud Shellを開き、画面右上の**さらに表示メニュー（︙）** から「**アップロード**」を選択して、今ダウンロードした`py_movie_downloader_template.zip`をアップロードします。
 
