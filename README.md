@@ -236,5 +236,7 @@ npm install -g @google/gemini-cli
     5. github actions で実行されます。
     6. 数分後に　上記2のActions を再度クリックしたら、作業が終わっていて、
     結果のデータをダウンロードできます。
+    ![Actions1](img/actions3.png)
+    ![Actions1](img/actions4.png)
 
 
