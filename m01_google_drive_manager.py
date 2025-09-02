@@ -17,7 +17,7 @@ DOWNLOADS_DIR = 'downloads'
 
 # ▼▼▼ ここが未完成なポイント！ ▼▼▼
 # TODO: Geminiに指示して、ここにGoogle DriveのフォルダIDを設定してもらう
-SHARED_DRIVE_FOLDER_ID = ''
+SHARED_DRIVE_FOLDER_ID = '1KarJiVGgwYC8MRoiX14tEBMQifNSxDAe'
 # ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲
 
 def _sanitize_filename(filename):
