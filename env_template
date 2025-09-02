@@ -1,4 +1,4 @@
-MODEL_NAME="gemini-2.5-flash"
-GOOGLE_API_KEY_1="AIzaSyBIRwZ88WwtsGps8b9mELU_vA39ljh84lM" #getstockdata05
-GOOGLE_API_KEY_2="AIzaSyCtJfGXPZAY4UP70XGVpbegCxQNYdOIUeU" #getstockdata10
-GOOGLE_API_KEY_3="AIzaSyCZRQZRExaFrcuq0VeU0iGp8q86KS4RMUs" #getstockdata15
+MODEL_NAME='gemini-2.5-flash'
+GOOGLE_API_KEY_1=''
+GOOGLE_API_KEY_2=''
+GOOGLE_API_KEY_3=''

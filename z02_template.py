@@ -6,7 +6,7 @@ TARGET_FILE = "m01_google_drive_manager.py"
 
 def reset_folder_id_in_file(file_path):
     exec = f"""\n指定されたPythonファイルを読み込み、
-SHARED_DRIVE_FOLDER_IDの値を空文字列'' に書き換える。\n"""
+SHARED_DRIVE_FOLDER_IDの値を空文字列'' に書き換える。"""
     print(exec)
     try:
         # --- 1. ファイルを読み込む ---
@@ -38,7 +38,7 @@ SHARED_DRIVE_FOLDER_IDの値を空文字列'' に書き換える。\n"""
                 else:
                     # すでに空文字列の場合は、何もしない
                     new_lines.append(line)
-                    print(f"\n初期化済です: \n{line.strip()}\n処理不要です。")
+                    print(f"初期化済です: \n{line.strip()}\n処理不要です。")
                     return # これ以上処理は不要なので関数を抜ける
             else:
                 # マッチしない行は、そのまま新しいリストに追加
@@ -56,8 +56,18 @@ SHARED_DRIVE_FOLDER_IDの値を空文字列'' に書き換える。\n"""
         print(f"エラー: ファイルが見つかりません: {file_path}")
     except Exception as e:
         print(f"予期せぬエラーが発生しました: {e}")
-
-def main():
+def make_env_template():
+    output_file = 'env_template'
+    text = """MODEL_NAME='gemini-2.5-flash'
+GOOGLE_API_KEY_1=''
+GOOGLE_API_KEY_2=''
+GOOGLE_API_KEY_3=''
+"""
+    with open(output_file, 'w', encoding='utf-8') as f:
+        f.write(text)
+    print(f"\n---------------------------------------\n{output_file} を初期化しました。\n---------------------------------------")
+    
+def main():    
     if os.path.exists(TARGET_FILE):
         reset_folder_id_in_file(TARGET_FILE)
     else:
