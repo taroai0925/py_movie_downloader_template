@@ -146,6 +146,10 @@ jobs:
             FILES_TO_COMMIT="$FILES_TO_COMMIT processed_failure.log"
           fi
 
+          # まずリモートの最新の状態を取得し、自分の変更をその上に再配置する
+          # これによりコンフリクトを防ぐ
+          git pull --rebase
+
           # もしコミットすべきファイルが1つでもリストにあれば (`-n` は変数が空でないことをチェック)
           if [ -n "$FILES_TO_COMMIT" ]; then
             # `git add` コマンドで、リストアップされたファイルをステージング（コミット対象に）する。
