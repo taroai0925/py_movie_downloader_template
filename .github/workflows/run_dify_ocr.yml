@@ -37,14 +37,13 @@ jobs:
           # GitHubリポジトリのSecretsに登録した認証情報を環境変数として読み込む
           CREDENTIALS_JSON: ${{ secrets.CREDENTIALS_JSON }}
           TOKEN_JSON: ${{ secrets.TOKEN_JSON }}
+
         run: |
-          # ▼▼▼ ここを修正しました ▼▼▼
-          # 1. GitHub Secretの TOKEN_JSON の内容を、token.json ファイルに書き込む
-          echo "${{ secrets.TOKEN_JSON }}" > token.json
-          # 2. GitHub Secretの CREDENTIALS_JSON の内容を、credentials.json ファイルに書き込む
-          echo "${{ secrets.CREDENTIALS_JSON }}" > credentials.json
-          # ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲
-          
+          # 1. GitHub Secretからcredentials.jsonファイルを復元する
+          echo "$CREDENTIALS_JSON" > credentials.json
+          # 2. GitHub Secretからtoken.jsonファイルを復元する
+          echo "$TOKEN_JSON" > token.json
+
           echo "secretsから認証ファイルを生成しました。"
 
       - name: Run Dify Main Controller
