@@ -4,6 +4,7 @@ downloads/
 m4a/
 movie*/
 split_m4a/
+markdown/
 .env
 service-acount-getstockdata05-gdrive-transcript-bot.json
 credentials.json

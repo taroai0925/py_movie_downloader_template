@@ -1,0 +1,100 @@
+#
+# ファイル名: .github/workflows/run_dify_ocr.yml
+# 役割: 手動実行でDify文字起こしプロセスを起動し、結果を保存・記録する
+#
+
+name: Run Dify OCR and Log Workflow
+
+on:
+  # GitHubのActionsタブから手動で実行できるようにする
+  workflow_dispatch:
+
+permissions:
+  # リポジトリに書き込む（git pushする）権限を付与
+  contents: write
+
+jobs:
+  run-ocr-process:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          # requirements.txtにgoogle-api-python-clientなど必要なライブラリが記載されていること
+          pip install -r requirements.txt
+      
+      - name: Prepare authentication files from secrets
+        env:
+          # GitHubリポジトリのSecretsに登録した認証情報を環境変数として読み込む
+          CREDENTIALS_JSON: ${{ secrets.CREDENTIALS_JSON }}
+          TOKEN_JSON: ${{ secrets.TOKEN_JSON }}
+        run: |
+          # 1. GitHub Secretからcredentials.jsonファイルを復元する
+          echo "$CREDENTIALS_JSON" > token.json
+          # 2. GitHub Secretからtoken.jsonファイルを復元する
+          echo "$TOKEN_JSON" > credentials.json
+          
+          echo "secretsから認証ファイルを生成しました。"
+
+      - name: Run Dify Main Controller
+        id: main_process
+        # メインのPythonスクリプトを実行する
+        run: python dify_main_controller.py
+      
+      - name: Upload Markdown and Logs as Artifact
+        # always()を指定することで、前のステップが失敗しても必ず実行される
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          # ダウンロードする際の成果物の名前
+          name: dify-results-and-logs
+          # 保存対象のファイルやフォルダを指定
+          path: |
+            markdown/*.md
+            dify_get_url_success.log
+            dify_get_url_failure.log
+          # 成果物が見つからなくてもエラーにしない
+          if-no-files-found: ignore
+
+      - name: Configure Git for pushing logs
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Commit and Push Log Files if changed
+        run: |
+          # 存在するログファイルだけをgit addの対象にする
+          FILES_TO_COMMIT=""
+          if [ -f dify_get_url_success.log ]; then
+            FILES_TO_COMMIT="$FILES_TO_COMMIT dify_get_url_success.log"
+          fi
+          if [ -f dify_get_url_failure.log ]; then
+            FILES_TO_COMMIT="$FILES_TO_COMMIT dify_get_url_failure.log"
+          fi
+
+          # 追加すべきファイルがある場合のみgit addを実行
+          if [ -n "$FILES_TO_COMMIT" ]; then
+            git add $FILES_TO_COMMIT
+          else
+            echo "No log files found to commit."
+            exit 0 # ログファイルがない場合は正常終了
+          fi
+          
+          # git diffで変更があった（新しいログが追記された）場合のみコミット＆プッシュを実行
+          if ! git diff --staged --quiet; then
+            JST_TIMESTAMP=$(TZ=Asia/Tokyo date +'%Y%m%d-%H%M%S')
+            COMMIT_MESSAGE="$JST_TIMESTAMP: Update OCR logs via GitHub Actions"
+            git commit -m "$COMMIT_MESSAGE"
+            git push
+          else
+            echo "No new log entries to commit."
+          fi
