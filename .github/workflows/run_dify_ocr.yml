@@ -24,7 +24,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.12'
+          python-version: '3.11'
 
       - name: Install dependencies
         run: |
@@ -38,10 +38,12 @@ jobs:
           CREDENTIALS_JSON: ${{ secrets.CREDENTIALS_JSON }}
           TOKEN_JSON: ${{ secrets.TOKEN_JSON }}
         run: |
-          # 1. GitHub Secretからcredentials.jsonファイルを復元する
-          echo "$CREDENTIALS_JSON" > token.json
-          # 2. GitHub Secretからtoken.jsonファイルを復元する
-          echo "$TOKEN_JSON" > credentials.json
+          # ▼▼▼ ここを修正しました ▼▼▼
+          # 1. GitHub Secretの TOKEN_JSON の内容を、token.json ファイルに書き込む
+          echo "${{ secrets.TOKEN_JSON }}" > token.json
+          # 2. GitHub Secretの CREDENTIALS_JSON の内容を、credentials.json ファイルに書き込む
+          echo "${{ secrets.CREDENTIALS_JSON }}" > credentials.json
+          # ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲
           
           echo "secretsから認証ファイルを生成しました。"
 
